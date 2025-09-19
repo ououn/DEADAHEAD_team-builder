@@ -63,21 +63,15 @@ export function texelY(pixel, window) {
 
 // use example in canvas.js
 // utils.drawImageTexel( c, "./path/image.ong", width, height, posX, posY, "window_name" )
-export function drawImageTexel( c, src, width, height, x, y, window ) {
-	let image = new Image();
-	image.src = src;
-	
-	if ( image.complete && image.naturalWidth !== 0 ) {
-		c.drawImage( image, texelX(x, window), texelY(y, window), texelX(width), texelY(height) )
+export function drawImageTexel( c, img, width, height, x, y, window ) {
+	if ( img && img.complete && img.naturalWidth !== 0 ) {
+		c.drawImage( img, texelX(x, window), texelY(y, window), texelX(width), texelY(height) )
 	}
 }
 // render method, none
-export function drawImageTexel2( c, src, width, height, x, y, window ) {
-	let image = new Image();
-	image.src = src;
-	
-	if ( image.complete && image.naturalWidth !== 0 ) {
-		c.drawImage( image, texelX(x, window), texelY(y,window) , width, height )
+export function drawImageTexel2( c, img, width, height, x, y, window ) {
+	if ( img && img.complete && img.naturalWidth !== 0 ) {
+		c.drawImage( img, texelX(x, window), texelY(y,window) , width, height )
 	}
 }
 
