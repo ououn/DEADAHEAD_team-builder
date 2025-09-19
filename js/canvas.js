@@ -1,5 +1,8 @@
+// note
+//
+// 
+
 // todo
-// state.window  size for pixel size, sizePrint for texeledSize
 
 import * as config from "./config.js";
 import * as state from "./state.js";
@@ -246,7 +249,7 @@ function canvasDraw() {
 					if (current.type === "unit" && mainEditorT_tab === 1 && current.oldOffset) {
 						let unitBg = state.ui_texture.find(item => item.name === "bg_mainEditorM_Vanilla");
 						utils.drawImageTexel( c, 
-							unitBg.src,
+							unitBg.img,
 							...unitBg.sizePixel,
 							...current.oldOffset,
 							state.window[j].name
@@ -258,7 +261,7 @@ function canvasDraw() {
 					switch(current.render.method) {
 						case "pixel":
 							utils.drawImageTexel( c,
-								current.src,
+								current.img,
 								current.sizePixel[0] * current.render.transform.scale[0],
 								current.sizePixel[1] * current.render.transform.scale[1],
 								...current.render.transform.offset,
@@ -269,7 +272,7 @@ function canvasDraw() {
 							break;
 						case "none":
 							utils.drawImageTexel2( c,
-								current.src,
+								current.img,
 								current.sizePixel[0] * current.render.transform.scale[0],
 								current.sizePixel[1] * current.render.transform.scale[1],
 								...current.render.transform.offset,
@@ -289,7 +292,7 @@ function canvasDraw() {
 							};
 
 							utils.drawImageTexel2( c,
-								current.src,
+								current.img,
 								thisSize[0] * expandFactor,
 								thisSize[1] * expandFactor,
 								...current.render.transform.offset,
