@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "fontTitle";
+  src: url("../font/Dead_Ahead.ttf");
+}
+body {
+  background: #9DB5D4;
+}
+
+#dazw-team-build-container {
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px black;
+}
+
+canvas#dazw-team-build {
+  border: solid 1px white;
+}/*# sourceMappingURL=main.css.map */
