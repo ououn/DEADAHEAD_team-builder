@@ -185,14 +185,24 @@ async function initLibrary(listLibrary) {
 				unit.type = unit.type || "unit";
 			}
 
-			const dimensions = await utils.getImageNaturalSize(unit.src);
-			unit.sizePixel = unit.sizePixel || dimensions.size;
+			// create persistent image object only once
+			if (!unit.img) {
+				unit.img = new Image();
+				unit.img.src = unit.src;
+				await new Promise((resolve) => {
+					if (unit.img.complete && unit.img.naturalWidth !== 0) {
+						resolve();
+					} else {
+						unit.img.onload = resolve;
+						unit.img.onerror = resolve;// fail gracefully
+					}
+				})
+			}
+			// set sizePixel from loaded image
+			unit.sizePixel = unit.sizePixel || [unit.img.naturalWidth, unit.img.naturalHeight];
 			
 			// set default value if not exist
-			// Ensure unit.render exists first to avoid errors
 			unit.render = unit.render || {};
-
-			// Set default values for nested properties
 			unit.render.method = unit.render.method || "pixel";// pixel, none, expand
 			unit.render.transform = unit.render.transform || {};
 			unit.render.transform.scale = unit.render.transform.scale || [1, 1];
@@ -201,7 +211,7 @@ async function initLibrary(listLibrary) {
 
 		}
 	} catch(error) {
-		console.error("An error occurred during initialization:", error);
+		console.error("An error occurred during initialization: ", error);
 	}
 }
 //
