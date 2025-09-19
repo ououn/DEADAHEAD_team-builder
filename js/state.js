@@ -198,6 +198,7 @@ async function initLibrary(listLibrary) {
 					}
 				})
 			}
+			//console.log('Drawing unit:', unit, unit.img);
 			// set sizePixel from loaded image
 			unit.sizePixel = unit.sizePixel || [unit.img.naturalWidth, unit.img.naturalHeight];
 			
